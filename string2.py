@@ -18,9 +18,13 @@
 
 
 def verbing(s):
-    """Your code goes here.  Edit this docstring."""
-    return
-
+    length = len(s)
+    if length > 2:
+        if s[-3:] == 'ing':
+            s += 'ly'
+        else:
+            s += 'ing'
+    return s
 
 # E. not_bad
 # Given a string, find the first appearance of the
@@ -30,9 +34,14 @@ def verbing(s):
 # Return the resulting string.
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
+
+
 def not_bad(s):
-    """Your code goes here.  Edit this docstring."""
-    return
+    subNot = s.find('not')
+    subBad = s.find('bad')
+    if (subBad > subNot):
+        return s[:subNot] + 'good' + s[(subBad+3):]
+    return s
 
 
 # F. front_back
@@ -42,13 +51,35 @@ def not_bad(s):
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
-def front_back(a, b):
-    """Your code goes here.  Edit this docstring."""
-    return
 
+def front_back(a, b):
+    aLength = len(a)
+    bLength = len(b)
+    if aLength % 2 == 1:
+        aFront = a[0:aLength / 2 + 1]
+    else:
+        aFront = a[0:aLength / 2]
+
+    if bLength % 2 == 1:
+        bFront = b[0:bLength / 2 + 1]
+    else:
+        bFront = b[0:bLength / 2]
+
+    if aLength % 2 == 1:
+        aBack = a[aLength / 2 + 1:]
+    else:
+        aBack = a[aLength / 2:]
+
+    if bLength % 2 == 1:
+        bBack = b[bLength / 2 + 1:]
+    else:
+        bBack = b[bLength / 2:]
+    return aFront + bFront + aBack + bBack
 
 # Provided simple test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
+
+
 def test(got, expected):
     """Your code goes here.  Edit this docstring."""
     if got == expected:
